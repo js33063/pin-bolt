@@ -8,7 +8,7 @@ var gen = rn.generator({
 , integer: true
 })
 var client = new Client({
-  connectionString: 'postgres://ztofmzxuprvzke:6fe148964f7f25e2602cea7836bbb9f8f5b0b99cca8dbbafac4902d638686209@ec2-54-83-61-142.compute-1.amazonaws.com:5432/d31aef7km7hgds',
+  connectionString: 'postgres://tautzsldkgxevf:225922cce0147ad1421ad8f154a60a2ef7bba5a1ef979dbe7952619f347b955a@ec2-54-243-241-62.compute-1.amazonaws.com:5432/d50133m9jircp7',
   ssl: true,
 });
 client.connect();
