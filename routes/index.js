@@ -26,7 +26,7 @@ router.get("/getallCases", function(req, res, next) {
   
 });
 
-router.post("/insertAccount", function(req, res, next) {
+router.post("/newAccount", function(req, res, next) {
     console.log(req.body);
     if(req.body!=null || req.body!=''){
  var q ="INSERT INTO salesforce.account (Name, Phone,address__c,PostgresId__c) VALUES('"+req.body.name+"','"+req.body.phone+"','"+req.body.address+"','"+gen()+"');";
@@ -35,6 +35,28 @@ router.post("/insertAccount", function(req, res, next) {
     res.json(result);
   });
  }
+});
+
+router.post("/insertAccount", function(req, res, next) {
+  var reqbody = req.body;
+ 
+    console.log(reqbody);
+    var q ="INSERT INTO salesforce.account (Name, Phone,address__c,PostgresId__c) VALUES";
+    reqbody.forEach((acc,index,array) => {
+      if (index === (array.length -1)) {
+        q+= "('"+acc.name+"','"+acc.phone+"','"+acc.address+"','"+gen()+"')";
+    }else{
+    q+= "('"+acc.name+"','"+acc.phone+"','"+acc.address+"','"+gen()+"'),";
+    }
+    });
+    q+= ';';
+    console.log(q);
+    client.query(q, (err, result) => {
+      if (err) throw err;
+      res.send(result);
+    });
+   
+   
 });
 
 
